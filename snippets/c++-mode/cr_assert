@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: cr_assert
+# uuid: cr
+# key: cr
+# --
+cr_assert($1);$0

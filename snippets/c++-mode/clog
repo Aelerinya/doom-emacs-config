@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: clog
+# uuid: log
+# key: log
+# --
+std::clog << "$1" << std::endl;$0

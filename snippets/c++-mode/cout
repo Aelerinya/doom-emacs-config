@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: cout
+# uuid: out
+# key: out
+# --
+std::cout << $1 << std::endl;$0

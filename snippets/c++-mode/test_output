@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: test output
+# uuid: tout
+# key: tout
+# --
+static const char *output = R"($1
+)";$0
