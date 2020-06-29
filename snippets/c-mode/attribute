@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: attribute
+# uuid: attribute
+# key: attr
+# --
+__attribute__(($1))$0

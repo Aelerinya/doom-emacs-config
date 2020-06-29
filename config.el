@@ -19,7 +19,9 @@
 (elcord-mode)
 
 ;; Setup flycheck-grammalecte
-(require 'flycheck-grammalecte)
+;; (require 'flycheck-grammalecte)
+;; Flycheck checker chains
+;; (flycheck-add-next-checker 'francais-grammalecte 'tex-chktex)
 
 (setq neo-window-width 15
       neo-window-fixed-size nil)
@@ -41,10 +43,7 @@
                  (message "No RLS server running"))))
       (apply orig-fn args))))
 ;; Automatic buffer formating for rsutic
-(setq rustic-format-on-save t)
-
-;; Flycheck checker chains
-(flycheck-add-next-checker 'francais-grammalecte 'tex-chktex)
+;; (setq rustic-format-on-save t)
 
 ;; Start emojify
 (add-hook 'after-init-hook #'global-emojify-mode)
@@ -61,3 +60,46 @@
 
 ;; Maybe fix lsp ?
 (setq lsp-prefer-flymake nil)
+
+;; Chck syntax automatically
+(after! flycheck
+  (setq flycheck-check-syntax-automatically '(save idle-change new-line mode-enabled)))
+
+;; Use rust analyser instead of rls
+(setq rustic-lsp-server 'rust-analyzer)
+
+(setq lsp-rust-all-features t)
+
+;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
+;; (defun rename-file-and-buffer (new-name)
+;;   "Renames both current buffer and file it's visiting to NEW-NAME."
+;;   (interactive "sNew name: ")
+;;   (let ((name (buffer-name))
+;;         (filename (buffer-file-name)))
+;;     (if (not filename)
+;;         (message "Buffer '%s' is not visiting a file!" name)
+;;       (if (get-buffer new-name)
+;;           (message "A buffer named '%s' already exists!" new-name)
+;;         (progn
+;;           (rename-file filename new-name 1)
+;;           (rename-buffer new-name)
+;;           (set-visited-file-name new-name)
+;;           (set-buffer-modified-p nil))))))
+
+(defun rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let* ((name (buffer-name))
+        (filename (buffer-file-name))
+        (basename (file-name-nondirectory filename)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " (file-name-directory filename) basename nil basename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))

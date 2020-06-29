@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: assert
+# uuid: assert
+# key: a
+# --
+assert($1);$0
