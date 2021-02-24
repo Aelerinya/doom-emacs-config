@@ -6,11 +6,11 @@
 ;; defines shortcut for find source/header file for the current
 ;; file
 (add-hook 'c++-mode-hook
-           '(lambda ()
-              (define-key c-mode-base-map (kbd "M-o") 'cff-find-other-file)))
+          '(lambda ()
+             (define-key c-mode-base-map (kbd "M-o") 'cff-find-other-file)))
 (add-hook 'c-mode-hook
-           '(lambda ()
-              (define-key c-mode-base-map (kbd "M-o") 'cff-find-other-file)))
+          '(lambda ()
+             (define-key c-mode-base-map (kbd "M-o") 'cff-find-other-file)))
 
 (setq doom-font (font-spec :family "Source Code Pro" :size 16))
 
@@ -53,7 +53,7 @@
 (add-to-list 'auto-mode-alist '("\\.tera\\'" . web-mode))
 (setq web-mode-engines-alist
       '(("jinja2"    . "\\.tera\\'"))
-)
+      )
 
 ;; Workaround for emacs incompatibility with input methods managers
 (require 'iso-transl)
@@ -90,8 +90,8 @@
   "Renames current buffer and file it is visiting."
   (interactive)
   (let* ((name (buffer-name))
-        (filename (buffer-file-name))
-        (basename (file-name-nondirectory filename)))
+         (filename (buffer-file-name))
+         (basename (file-name-nondirectory filename)))
     (if (not (and filename (file-exists-p filename)))
         (error "Buffer '%s' is not visiting a file!" name)
       (let ((new-name (read-file-name "New name: " (file-name-directory filename) basename nil basename)))
@@ -103,3 +103,14 @@
           (set-buffer-modified-p nil)
           (message "File '%s' successfully renamed to '%s'"
                    name (file-name-nondirectory new-name)))))))
+
+;; Disable c++-clang and c++-gcc as syntax checker
+(setq-default flycheck-disabled-checkers (list 'c/c++-clang 'c/c++-gcc))
+
+;; Disable completion edits for c mode
+(add-hook! (c-mode c++-mode)
+  (setq lsp-completion-enable-additional-text-edit nil))
+
+;; Julia lsp setup
+(setq lsp-julia-default-environment "~/.julia/environments/v1.0")
+(setq lsp-enable-folding t)

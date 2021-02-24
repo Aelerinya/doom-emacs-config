@@ -17,6 +17,11 @@
   :recipe (:host github :repo "Ersikan/epitech-emacs-package"))
 (package! ron-mode
   :recipe (:host github :repo "rhololkeolke/ron-mode"))
+(package! nginx-mode)
+(package! yaml-mode)
+(package! plantuml-mode)
+(package! lsp-julia :recipe (:host github :repo "non-jedi/lsp-julia"))
+(package! systemd)
 ;(package! smartparens :disable t)
 ;(package! rustic :disable t)
 ;(package! racer :disable t)
