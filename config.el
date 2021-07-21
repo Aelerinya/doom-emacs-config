@@ -114,3 +114,7 @@
 ;; Julia lsp setup
 (setq lsp-julia-default-environment "~/.julia/environments/v1.0")
 (setq lsp-enable-folding t)
+
+;; Solidity setup
+;; (setq solidity-flycheck-solc-checker-active t)
+;; (setq solidity-flycheck-solium-checker-active t)

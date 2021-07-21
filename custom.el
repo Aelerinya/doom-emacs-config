@@ -17,7 +17,21 @@
  '(global-hl-todo-mode t)
  '(rustic-format-on-save t t)
  '(safe-local-variable-values
-   '((lsp-enabled-clients quote
+   '((eval setq lsp-eslint-options
+           (ht
+            ("zfnerffctdce" "/home/aelerinya/Stage/Cryptio/next/config/.eslintrc.yaml")))
+     (eval setq lsp-eslint-options
+           (ht
+            ("-c" "/home/aelerinya/Stage/Cryptio/next/config/.eslintrc.yaml")))
+     (eval setq lsp-eslint-options
+           (ht
+            ("configFile" "/home/aelerinya/Stage/Cryptio/next/config/.eslintrc.yaml")))
+     (lsp-eslint-options eval
+                         (ht
+                          ("configFile" "/home/aelerinya/Stage/Cryptio/next/config/.eslintrc.yaml")))
+     (lsp-eslint-options ht
+                         ("configFile" "/home/aelerinya/Stage/Cryptio/next/config/.eslintrc.yaml"))
+     (lsp-enabled-clients quote
                           ("angular-ls"))
      (eval setq lsp-clients-angular-language-server-command
            (let
