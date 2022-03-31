@@ -125,3 +125,13 @@
 (add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
 
 ;; Copy file name
+(defun copy-buffer-file-path ()
+  "Copies the file path associated with the buffer to the kill ring"
+  (interactive)
+  (kill-new (let ((project-root (projectile-project-root))
+                  (buffer-path (buffer-file-name)))
+              (if project-root
+                  (string-remove-prefix project-root buffer-path)
+                buffer-path)) ))
+
+(map! :leader (:prefix "p" :n "y" #'copy-buffer-file-path))
