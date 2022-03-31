@@ -2,6 +2,9 @@
 
 ;; Place your private configuration here
 
+;; Load theme
+(setq doom-theme 'molokai)
+
 (require 'cff)
 ;; defines shortcut for find source/header file for the current
 ;; file
@@ -118,3 +121,7 @@
 ;; Solidity setup
 ;; (setq solidity-flycheck-solc-checker-active t)
 ;; (setq solidity-flycheck-solium-checker-active t)
+
+(add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
+
+;; Copy file name

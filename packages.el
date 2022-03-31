@@ -23,6 +23,7 @@
 (package! lsp-julia :recipe (:host github :repo "non-jedi/lsp-julia"))
 (package! systemd)
 (package! solidity-mode)
+(package! magit-delta)
 ;; (package! solidity-flycheck)
 ;; (package! company-solidity)
 ;(package! smartparens :disable t)
