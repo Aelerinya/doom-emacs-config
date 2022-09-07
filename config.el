@@ -18,8 +18,8 @@
 (setq doom-font (font-spec :family "Source Code Pro" :size 16))
 
 ;; Setup elcord
-(require 'elcord)
-(elcord-mode)
+;; (require 'elcord)
+;; (elcord-mode)
 
 ;; Setup flycheck-grammalecte
 ;; (require 'flycheck-grammalecte)

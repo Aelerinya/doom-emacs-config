@@ -24,6 +24,7 @@
 (package! systemd)
 (package! solidity-mode)
 (package! magit-delta)
+(package! protobuf-mode)
 ;; (package! solidity-flycheck)
 ;; (package! company-solidity)
 ;(package! smartparens :disable t)
